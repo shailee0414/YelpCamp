@@ -1,0 +1,73 @@
+<% layout('/layouts/boilerplate') %>
+    <div class="row mb-5">
+        <h1 class="text-center">Edit Campground</h1>
+        <div class="col-6 offset-3">
+            <form action="/campground/<%= campground._id %>?_method=PUT" method="POST" novalidate class="validation">
+                <div class="mb-3">
+                    <label class="form-label" for="addNew">Title</label>
+                    <input class="form-control" type="text" placeholder="Add Title" id="addNew"
+                        name="campground[title]" value="<%= campground.title %>" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="addalocation">Location</label>
+                    <input type="text" class="form-control"  placeholder="Add Location" id="addalocation"
+                        name="campground[location]" value="<%= campground.location %>" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="image">Image Url</label>
+                    <input type="text" class="form-control"  placeholder="Add image url" id="image"
+                        name="campground[image]" value="<%= campground.image %>" required>
+                </div>
+                <div class=" mb-3">
+                    <label class="form-label" for="price">Price</label>
+                    <div class="input-group">
+                        <span class="input-group-text" id="basic-addon1">$</span>
+                        <input type="text" class="form-control"  placeholder="0.00" id="price" name="campground[price]"
+                            value="<%= campground.price %>" required>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="description">Description</label>
+                    <textarea type="text" class="form-control"  placeholder="Add Description" id="description"
+                        name="campground[description]" value="<%= campground.description %>" required></textarea>
+                </div>
+                <div>
+                    <button class="btn btn-info text-light">Update Campground</button>
+                    <a class="btn btn-primary " href="/campground/<%= campground._id %>">Back to Campground</a>
+                </div>
+
+            </form>
+            <script>
+                (() => {
+                    'use strict'
+                    const forms = document.querySelectorAll('.validation')
+                    Array.from(forms).forEach(form => {
+                        form.addEventListener('submit', event => {
+                            if (!form.checkValidity()) {
+                                event.preventDefault()
+                                event.stopPropagation()
+                            }
+                            form.classList.add('was-validated')
+                        }, false)
+                    })
+                })()
+            </script>
+
+        </div>
+    </div>
+    <!-- <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>edit</title>
+    </head>
+    <body>
+        <h1>edit</h1>
+        <form action="/campground/<%= campground._id %>?_method=PUT" method="POST">
+            <input type="text" name="campground[title]" value="<%= campground.title %>">
+            <button>sub</button>
+        </form>
+    </body>
+    </html> -->
